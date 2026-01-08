@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Target</title>
+    <style>
+        /* common style */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        .small__container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+
+        }
+
+        .full__container {
+            width: 100%;
+
+        }
+
+        .flex__row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            align-items: center;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .flex__column {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .primary__button {
+            padding: 10px;
+            text-align: center;
+            border-radius: 999px;
+
+        }
+
+        .primary__button:hover {
+            padding: 10px;
+            background-color: #f6f6f6;
+
+
+        }
+
+        .secondary__button {
+            padding: 15px 20px;
+            text-align: center;
+            border-radius: 999px;
+            background-color: #e91f0c;
+            color: white;
+
+
+        }
+
+        .secondary__button:hover {
+            background-color: #e61907;
+
+
+        }
+
+        .icon__container {
+            padding: 5px;
+            border-radius: 50%;
+            text-align: center;
+
+        }
+
+        .icon__container:hover {
+            
+            background-color: #f6f6f6;
+
+
+        }
+
+        /* font sizes */
+
+        p {
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        h6 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        h5 {
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 30px;
+            font-weight: 800;
+        }
+
+        h2 {
+            font-size: 34px;
+            font-weight: 900;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 1000;
+        }
+
+        sup {
+            font-size: 8px;
+            font-weight: 600;
+        }
+
+        .hide__on__tablet {
+            display: block;
+        }
+
+        .hide__on__compouter {
+            display: none;
+        }
+
+        .show__on__mobile {
+            display: none;
+        }
+
+
+        .header {
+            background-color: #e91f0c;
+            padding: 10px 0;
+            z-index: 999;
+        }
+
+        .header__content__box {
+
+            color: white;
+        }
+
+        .main__content {
+            color: white;
+            margin: auto 0;
+
+        }
+
+        @media (max-width: 1070px) {
+            .content__2 {
+                display: none;
+            }
+
+            .hide__on__tablet {
+                display: none;
+            }
+
+            .hide__on__compouter {
+                display: block;
+            }
+
+
+        }
+
+        @media (max-width: 500px) {
+            .nav__bar .hide__on__tablet {
+                display: none;
+            }
+
+            .nav__bar .hide__on__compouter {
+                display: block;
+            }
+
+            .nav__bar .hide__on__mobile {
+                display: none;
+            }
+
+            .show__on__mobile {
+                display: block;
+            }
+
+
+        }
+
+        .flex__row .content {
+            flex-grow: 1;
+        }
+
+.nav__bar__container{
+    background-color: white;
+    position: sticky;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+
+        .nav__bar ul {
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav__bar ul li {
+            flex-grow: 1;
+        }
+
+        .nav__bar ul li a {
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+
+
+        }
+
+        .nav__bar ul .accounts a {
+
+            border-radius: 999px;
+        }
+
+        .nav__bar ul .icon__container a {
+
+            border-radius: 50%;
+        }
+
+        .nav__bar ul li .menu__option:hover {
+            background-color:#f6f6f6
+
+        }
+        
+
+
+
+
+        .nav__bar ul .form__container {
+            flex-grow: 2;
+
+        }
+
+
+        .side__nav__bar {
+            list-style: none;
+            flex-direction: column;
+            position: fixed;
+            z-index: 999;
+            backdrop-filter: blur();
+            background-color: rgba(255, 255, 255, 0.824);
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            top: 0;
+            right: 0;
+            align-items: start;
+            width: 250px;
+            height: 100%;
+            display: none;
+
+        }
+
+
+        .side__nav__bar li {
+            width: 100%;
+        }
+
+        .side__nav__bar li a {
+            padding: 10px;
+            display: block;
+            width: 100%;
+            text-decoration: none;
+            width: 100%;
+            color: black;
+        }
+
+        .side__nav__bar li :hover {
+            background-color: #f6f6f6;
+        }
+
+
+        .featured__categories {
+            margin-top: 10px;
+            z-index: -2;
+        }
+
+        .featured__categories .content__container .image {
+
+            width: 180px;
+            height: 180px;
+            background-color: #c1c1c1;
+            border-radius: 50%;
+            overflow: hidden;
+
+        }
+
+        .featured__categories .content__container .image img {
+
+            width: 100%;
+
+        }
+
+        .featured__categories .box__container {
+
+            margin-top: 10px;
+        }
+
+        .featured__categories .content__container:hover p {
+            text-decoration: underline;
+        }
+
+        .featured__categories .content__container:hover .image {
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+
+        .dropdown-content {
+            position: absolute;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            background-color: white;
+            width: 150px;
+
+
+
+        }
+
+        .dropdown-content a {
+            padding: 10px;
+            background-color: white;
+            width: 100%;
+
+        }
+
+        .dropdown-content a :hover {
+
+            background-color: #f6f6f6;
+
+        }
+
+        .nav__bar ul li .dropdown-content {
+            display: none;
+        }
+
+        .nav__bar ul li:hover .dropdown-content {
+            display: block;
+        }
+
+        .section__2 {
+            margin: 10px 0;
+            height: 350px;
+            gap: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .section__2 .content__container__1 {
+            margin: 30px auto;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 20px;
+
+        }
+
+        .section__2 .content__container__1 {
+            padding: 10px;
+
+        }
+
+        .section__2 .content__container__1 .emial__form {
+            display: flex;
+            align-items: center;
+
+            width: 150px;
+            height: 40px;
+            border: none;
+            outline: none;
+            border: 3px solid black;
+            padding: 10px;
+        }
+
+        .section__2 .content__container__1 .emial__form input {
+
+            width: 100%;
+            font-size: 15px;
+            border: none;
+            outline: none;
+
+
+        }
+
+
+        .section__2 .content__container__2 .content a {
+
+            text-decoration: none;
+            color: #848282;
+
+
+        }
+
+        .section__2 .content__container__2 .content a:hover {
+
+            text-decoration: underline;
+        }
+
+        .footer {
+            padding: 20px 0 0;
+            width: 100%;
+            background-color: #f6f6f6
+        }
+
+        .footer .content__container a {
+            padding: 10px 0;
+
+
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+
+        }
+        .footer .footer__img__container{
+           
+width: 80%;
+height: auto;
+
+        } 
+
+         .footer .footer__img__container img{
+background-repeat: no-repeat;
+background-size: cover ;
+background-position: center;
+width: 100%;
+        } 
+      
+        .footer .content__container {
+            padding: 20px;
+            justify-content: space-between;
+            align-items: start;
+            width: 100%;
+        }
+
+        .footer .content__container .coloumn {
+            align-items: start;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <div class="header">
+
+        <div class="header__content__box small__container flex__row">
+
+            <div class="main__content content__1 flex__row">
+                <div class="content">
+                    <p><svg fill="white" width="13px" height="13px" viewBox="0 0 32 32" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M16.114-0.011c-6.559 0-12.114 5.587-12.114 12.204 0 6.93 6.439 14.017 10.77 18.998 0.017 0.020 0.717 0.797 1.579 0.797h0.076c0.863 0 1.558-0.777 1.575-0.797 4.064-4.672 10-12.377 10-18.998 0-6.618-4.333-12.204-11.886-12.204zM16.515 29.849c-0.035 0.035-0.086 0.074-0.131 0.107-0.046-0.032-0.096-0.072-0.133-0.107l-0.523-0.602c-4.106-4.71-9.729-11.161-9.729-17.055 0-5.532 4.632-10.205 10.114-10.205 6.829 0 9.886 5.125 9.886 10.205 0 4.474-3.192 10.416-9.485 17.657zM16.035 6.044c-3.313 0-6 2.686-6 6s2.687 6 6 6 6-2.687 6-6-2.686-6-6-6zM16.035 16.044c-2.206 0-4.046-1.838-4.046-4.044s1.794-4 4-4c2.207 0 4 1.794 4 4 0.001 2.206-1.747 4.044-3.954 4.044z">
+                            </path>
+                        </svg>
+                        Ship to 43260</p>
+                </div>
+                <div class="content">
+                    <p>Columbus Central</p>
+                </div>
+            </div>
+
+            <div class="main__content content__2  flex__row">
+
+                <div class="content ">
+                    <p>Target Circel<sup>Tm</sup></p>
+                </div>
+                <div class="content">
+                    <p>Target Circel<sup>Tm</sup> Card</p>
+                </div>
+                <div class="content">
+                    <p>Target Circel 360<sup>Tm</sup></p>
+                </div>
+                <div class="content">
+                    <p>Register & Wish List</p>
+                </div>
+                <div class="content">
+                    <p>Weekly Add</p>
+                </div>
+                <div class="content">
+                    <p> Find Store</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+<div class="nav__bar__container">
+
+    <div class="nav__bar small__container">
+        <ul>
+            <li class="logo "><a href="#"> <svg width="40px" height="40px" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 32 32" id="BullseyeRed">
+                        <path fill="#C00" d="M16 20.67a4.67 4.67 0 1 0 0-9.34 4.67 4.67 0 0 0 0 9.34" />
+                        <path fill="#C00" fill-rule="evenodd"
+                            d="M30 16a14 14 0 1 1-28 0 14 14 0 0 1 28 0m-4.67 0a9.33 9.33 0 1 1-18.66 0 9.33 9.33 0 0 1 18.66 0"
+                            clip-rule="evenodd" />
+                    </svg></a></li>
+            <li class="hide__on__tablet"><a class="menu__option" href="#">Catogories</a>
+                <ul class="dropdown-content">
+                    <li> <a href="#">Link 1</a></li>
+                    <li> <a href="#">Link 2</a></li>
+                    <li> <a href="#">Link 3</a></li>
+                </ul>
+            </li>
+            <li class="hide__on__tablet"><a class="menu__option" href="#">Deals</a>
+                <ul class="dropdown-content">
+                    <li> <a href="#">Link 1</a></li>
+                    <li> <a href="#">Link 2</a></li>
+                    <li> <a href="#">Link 3</a></li>
+                </ul>
+            </li>
+            <li class="hide__on__tablet"><a class="menu__option" href="#">New & Feaured</a>
+                <ul class="dropdown-content">
+                    <li> <a href="#">Link 1</a></li>
+                    <li> <a href="#">Link 2</a></li>
+                    <li> <a href="#">Link 3</a></li>
+                </ul>
+            </li>
+            <li class="hide__on__tablet"><a class="menu__option" href="#">Pick up & Delivery</a>
+                <ul class="dropdown-content">
+                    <li> <a href="#">Link 1</a></li>
+                    <li> <a href="#">Link 2</a></li>
+                    <li> <a href="#">Link 3</a></li>
+                </ul>
+            </li>
+
+            <li class="form__container hide__on__mobile"><a href="#">
+                    <form action="#"
+                        style="padding: 8px 10px; background-color: #f6f6f6; width: 100%; border-radius: 999px;">
+                        <input
+                            style=" font-size: 16px; font-weight: 500;  width: 100%; background-color: #f6f6f6;border: none;outline: none;"
+                            type="search" placeholder="what can we help you find?">
+                    </form>
+                </a></li>
+            <li class="accounts hide__on__mobile"><a class="primary__button" href="#">Accounts</a></li>
+            <li class="icon__container hide__on__mobile"><a href="#"><svg fill="#000000" width="25px" height="25px"
+                        style="margin: auto;" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" width="800px" height="800px"
+                        viewBox="0 0 902.86 902.86" xml:space="preserve">
+                        <g>
+                            <g>
+                                <path d="M671.504,577.829l110.485-432.609H902.86v-68H729.174L703.128,179.2L0,178.697l74.753,399.129h596.751V577.829z
+			 M685.766,247.188l-67.077,262.64H131.199L81.928,246.756L685.766,247.188z" />
+                                <path d="M578.418,825.641c59.961,0,108.743-48.783,108.743-108.744s-48.782-108.742-108.743-108.742H168.717
+			c-59.961,0-108.744,48.781-108.744,108.742s48.782,108.744,108.744,108.744c59.962,0,108.743-48.783,108.743-108.744
+			c0-14.4-2.821-28.152-7.927-40.742h208.069c-5.107,12.59-7.928,26.342-7.928,40.742
+			C469.675,776.858,518.457,825.641,578.418,825.641z M209.46,716.897c0,22.467-18.277,40.744-40.743,40.744
+			c-22.466,0-40.744-18.277-40.744-40.744c0-22.465,18.277-40.742,40.744-40.742C191.183,676.155,209.46,694.432,209.46,716.897z
+			 M619.162,716.897c0,22.467-18.277,40.744-40.743,40.744s-40.743-18.277-40.743-40.744c0-22.465,18.277-40.742,40.743-40.742
+			S619.162,694.432,619.162,716.897z" />
+                            </g>
+                        </g>
+                    </svg></a></li>
+
+            <!-- menu button -->
+            <li onclick=showSidebar() class="hide__on__compouter"><a href="#"><svg width="16" height="16"
+                        viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M14 5H2V3h12v2zm0 4H2V7h12v2zM2 13h12v-2H2v2z" />
+                    </svg></a></li>
+
+
+
+        </ul>
+    </div>
+
+</div>
+
+    <!-- side nav bar -->
+    <div>
+        <ul class="side__nav__bar ">
+
+            <li onclick=hideSidebar()><a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                        fill="#1f1f1f">
+                        <path
+                            d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                    </svg></a></li>
+
+
+
+            <li class="form__container show__on__mobile"><a href="#">
+                    <form action="#"
+                        style="padding: 8px 10px; background-color: #f6f6f6; width: 100%; border-radius: 999px;">
+                        <input
+                            style=" font-size: 16px; font-weight: 500;  width: 100%; background-color: #f6f6f6;border: none;outline: none;"
+                            type="search" placeholder="what can we help you find?">
+                    </form>
+                </a></li>
+
+
+
+            <li><a href="#">Catogories</a>
+
+            </li>
+            <li><a href="#">Deals</a></li>
+            <li><a href="#">New & Feaured</a></li>
+            <li><a href="#">Pick up & Delivery</a></li>
+            <li class="accounts show__on__mobile"><a href="#">Accounts</a></li>
+            <li class="icon__container show__on__mobile"><a href="#"><svg fill="#000000" width="25px" height="25px"
+                        style="margin: auto;" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" width="800px" height="800px"
+                        viewBox="0 0 902.86 902.86" xml:space="preserve">
+                        <g>
+                            <g>
+                                <path d="M671.504,577.829l110.485-432.609H902.86v-68H729.174L703.128,179.2L0,178.697l74.753,399.129h596.751V577.829z
+			 M685.766,247.188l-67.077,262.64H131.199L81.928,246.756L685.766,247.188z" />
+                                <path d="M578.418,825.641c59.961,0,108.743-48.783,108.743-108.744s-48.782-108.742-108.743-108.742H168.717
+			c-59.961,0-108.744,48.781-108.744,108.742s48.782,108.744,108.744,108.744c59.962,0,108.743-48.783,108.743-108.744
+			c0-14.4-2.821-28.152-7.927-40.742h208.069c-5.107,12.59-7.928,26.342-7.928,40.742
+			C469.675,776.858,518.457,825.641,578.418,825.641z M209.46,716.897c0,22.467-18.277,40.744-40.743,40.744
+			c-22.466,0-40.744-18.277-40.744-40.744c0-22.465,18.277-40.742,40.744-40.742C191.183,676.155,209.46,694.432,209.46,716.897z
+			 M619.162,716.897c0,22.467-18.277,40.744-40.743,40.744s-40.743-18.277-40.743-40.744c0-22.465,18.277-40.742,40.743-40.742
+			S619.162,694.432,619.162,716.897z" />
+                            </g>
+                        </g>
+                    </svg></a></li>
+
+
+
+
+
+        </ul>
+    </div>
+
+
+
+
+    <div class="featured__categories ">
+        <div class="section small__container flex__column">
+            <div class="heading">
+                <h2>Featured categories </h2>
+            </div>
+            <div class="heading">
+                <p>Top catagories <a href="#">Shop all</a> </p>
+            </div>
+
+
+            <div class="box__container flex__row">
+                <div class="content__container flex__column">
+                    <div class="image flex__row"><img src="/resources/IMAGES CONTENT/img-1.webp"></div>
+                    <div class="text">
+                        <p>women's</p>
+                    </div>
+                </div>
+                <div class="content__container flex__column">
+                    <div class="image flex__row"><img src="/resources/IMAGES CONTENT/img-2.webp"></div>
+                    <div class="text">
+                        <p>women's</p>
+                    </div>
+                </div>
+                <div class="content__container flex__column">
+                    <div class="image flex__row"><img src="/resources/IMAGES CONTENT/img-3.webp"></div>
+                    <div class="text">
+                        <p>women's</p>
+                    </div>
+                </div>
+                <div class="content__container flex__column">
+                    <div class="image flex__row"><img src="/resources/IMAGES CONTENT/img-4.webp"></div>
+                    <div class="text">
+                        <p>women's</p>
+                    </div>
+                </div>
+                <div class="content__container flex__column">
+                    <div class="image flex__row"><img src="/resources/IMAGES CONTENT/img-5.webp"></div>
+                    <div class="text">
+                        <p>women's</p>
+                    </div>
+                </div>
+                <div class="content__container flex__column">
+                    <div class="image flex__row"><img src="/resources/IMAGES CONTENT/img-6.webp"></div>
+                    <div class="text">
+                        <p>women's</p>
+                    </div>
+                </div>
+                <div class="content__container flex__column">
+                    <div class="image flex__row"><img src="/resources/IMAGES CONTENT/img-7.webp"></div>
+                    <div class="text">
+                        <p>women's</p>
+                    </div>
+                </div>
+                <div class="content__container flex__column">
+                    <div class="image flex__row"><img src="/resources/IMAGES CONTENT/img-8.webp"></div>
+                    <div class="text">
+                        <p>women's</p>
+                    </div>
+                </div>
+                <div class="content__container flex__column">
+                    <div class="image flex__row"><img src="/resources/IMAGES CONTENT/img-9.webp"></div>
+                    <div class="text">
+                        <p>women's</p>
+                    </div>
+                </div>
+                <div class="content__container flex__column">
+                    <div class="image flex__row"><img src="/resources/IMAGES CONTENT/img-10.webp"></div>
+                    <div class="text">
+                        <p>women's</p>
+                    </div>
+                </div>
+                <div class="content__container flex__column">
+                    <div class="image flex__row"><img src="/resources/IMAGES CONTENT/img-11.webp"></div>
+                    <div class="text">
+                        <p>women's</p>
+                    </div>
+                </div>
+                <div class="content__container flex__column">
+                    <div class="image flex__row"><img src="/resources/IMAGES CONTENT/img-12.webp"></div>
+                    <div class="text">
+                        <p>women's</p>
+                    </div>
+                </div>
+                <div class="content__container flex__column">
+                    <div class="image flex__row"><img src="/resources/IMAGES CONTENT/img-13.webp"></div>
+                    <div class="text">
+                        <p>women's</p>
+                    </div>
+                </div>
+                <div class="content__container flex__column">
+                    <div class="image flex__row"><img src="/resources/IMAGES CONTENT/img-14.webp"></div>
+                    <div class="text">
+                        <p>women's</p>
+                    </div>
+                </div>
+                <div class="content__container flex__column">
+                    <div class="image flex__row"><img src="/resources/IMAGES CONTENT/img-15.webp"></div>
+                    <div class="text">
+                        <p>women's</p>
+                    </div>
+                </div>
+                <div class="content__container flex__column">
+                    <div class="image flex__row"><img src="/resources/IMAGES CONTENT/img-16.webp"></div>
+                    <div class="text">
+                        <p>women's</p>
+                    </div>
+                </div>
+                <div class="content__container flex__column">
+                    <div class="image flex__row"><img src="/resources/IMAGES CONTENT/img-17.webp"></div>
+                    <div class="text">
+                        <p>women's</p>
+                    </div>
+                </div>
+                <div class="content__container flex__column">
+                    <div class="image flex__row"><img src="/resources/IMAGES CONTENT/img-18.webp"></div>
+                    <div class="text">
+                        <p>women's</p>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="section__2">
+
+
+        <div class="content__container__1">
+
+            <div class="content">
+                <h5>Get top deals, latest trends, and more.</h5>
+            </div>
+            <div class="emial__form">
+                <form action="#"><input type="email" placeholder="Email Adress"></form>
+            </div>
+            <div class="secondary__button ">
+                <h6>Sign Up</h6>
+            </div>
+        </div>
+
+        <div class="content__container__2">
+
+            <div class="content">
+                <p><a href="#">*See offer details. Restrictions apply. Pricing, promotions and availability may vary by
+                        location and at Target.com</a></p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="footer flex__column ">
+
+
+        <div class="content__container flex__row small__container">
+
+
+            <!-- About Us -->
+            <div class="coloumn flex__column">
+                <h5>About Us</h5>
+                <div>
+                    <p><a href="#">About Target</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Careers</a></p>
+                </div>
+                <div>
+                    <p><a href="#">News & Blog</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Target Brands</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Bullseye Shop</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Sustainability & Governance</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Press Center</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Advertise with Us</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Investors</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Affiliates & Partners</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Suppliers</a></p>
+                </div>
+                <div>
+                    <p><a href="#">TargetPlus</a></p>
+                </div>
+            </div>
+
+            <!-- Help -->
+            <div class="coloumn flex__column">
+                <h5>Help</h5>
+                <div>
+                    <p><a href="#">Target Help</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Returns</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Track Orders</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Recalls</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Contact Us</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Feedback</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Accessibility</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Security & Fraud</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Team Member Services</a></p>
+                </div>
+            </div>
+
+            <!-- Stores -->
+            <div class="coloumn flex__column">
+                <h5>Stores</h5>
+                <div>
+                    <p><a href="#">Find a Store</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Clinic</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Pharmacy</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Target Optical</a></p>
+                </div>
+                <div>
+                    <p><a href="#">More In-Store Services</a></p>
+                </div>
+            </div>
+
+            <!-- Services -->
+            <div class="coloumn flex__column">
+                <h5>Services</h5>
+                <div>
+                    <p><a href="#">Target Circle™</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Target Circle™ Card</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Target Circle 360™</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Target App</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Registry</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Same Day Delivery</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Order Pickup</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Drive Up</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Free 2-Day Shipping</a></p>
+                </div>
+                <div>
+                    <p><a href="#">Shipping & Delivery</a></p>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="footer__img__container ">
+<img src="/resources/IMAGES CONTENT/footer__img.svg ">
+
+        </div>
+
+
+    </div>
+
+    <script>
+        function showSidebar() {
+            const sidebar = document.querySelector('.side__nav__bar')
+            sidebar.style.display = 'flex'
+        }
+
+        function hideSidebar() {
+            const sidebar = document.querySelector('.side__nav__bar')
+            sidebar.style.display = 'none'
+        }
+    </script>
+
+</body>
+
+</html>
